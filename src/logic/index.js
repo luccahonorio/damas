@@ -1,50 +1,42 @@
-const squareLighter = 'rgb(212,198,159)';
-const squareDarker = 'rgb(142,108,80)';
+import { darken } from 'polished';
 
-const pieceDarker = 'rgb(82,57,47)';
-const pieceLighter = 'rgb(230,183,79)';
+export const squareLighter = 'rgb(212,198,159)';
+export const squareDarker = 'rgb(142,108,80)';
 
-export const tabu = [
+export const pieceDarker = 'rgb(82,57,47)';
+export const pieceLighter = 'rgb(230,183,79)';
+
+export const board = [
   [
     { piece: null, color: squareLighter },
     {
       id: 1,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 2,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 3,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 4,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 5,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
   ],
   [
@@ -52,40 +44,30 @@ export const tabu = [
       id: 6,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 7,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 8,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 9,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 10,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
   ],
@@ -95,40 +77,30 @@ export const tabu = [
       id: 11,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 12,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 13,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 14,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 15,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
   ],
   [
@@ -136,40 +108,30 @@ export const tabu = [
       id: 16,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 17,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 18,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 19,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 20,
       piece: pieceDarker,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
   ],
@@ -179,40 +141,30 @@ export const tabu = [
       id: 21,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 22,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 23,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 24,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 25,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
   ],
   [
@@ -220,40 +172,30 @@ export const tabu = [
       id: 26,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 27,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 28,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 29,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 30,
       piece: null,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
   ],
@@ -263,40 +205,30 @@ export const tabu = [
       id: 31,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 32,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 33,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 34,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 35,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
   ],
   [
@@ -304,40 +236,30 @@ export const tabu = [
       id: 36,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 37,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 38,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 39,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 40,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
   ],
@@ -347,40 +269,30 @@ export const tabu = [
       id: 41,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 42,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 43,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 44,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 45,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
   ],
   [
@@ -388,155 +300,43 @@ export const tabu = [
       id: 46,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 47,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 48,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 49,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
     {
       id: 50,
       piece: pieceLighter,
       color: squareDarker,
-      allowed: { left: false, right: false },
-      available: () => {},
     },
     { piece: null, color: squareLighter },
   ],
 ];
 
-function handleAllowedLighter(square) {
-  const squareIndex = getIndex(square);
-  const row = squareIndex.row - 1;
-  const sq = squareIndex.index;
-
-  if (squareIndex.index === 9) {
-    if (tabu[row][sq - 1].piece === null) {
-      return {
-        left: true,
-        right: false,
-      };
-    } else {
-      return {
-        left: false,
-        right: false,
-      };
-    }
-  }
-
-  if (squareIndex.index === 0) {
-    if (tabu[row][sq + 1].piece === null) {
-      return {
-        left: false,
-        right: true,
-      };
-    } else {
-      return {
-        left: false,
-        right: false,
-      };
-    }
-  }
-
-  let response = { right: false, left: false };
-  if (tabu[row][sq - 1].piece === null) {
-    response.left = true;
-  }
-  if (tabu[row][sq + 1].piece === null) {
-    response.right = true;
-  }
-  return response;
-}
-
-function handleAllowedDarken(square) {
-  const squareIndex = getIndex(square);
-  const row = squareIndex.row + 1;
-  const sq = squareIndex.index;
-
-  if (sq === 9) {
-    if (tabu[row][sq - 1].piece === null) {
-      return {
-        left: false,
-        right: true,
-      };
-    } else {
-      return {
-        left: false,
-        right: false,
-      };
-    }
-  }
-
-  if (sq === 0) {
-    if (tabu[row][sq + 1].piece === null) {
-      return {
-        left: true,
-        right: false,
-      };
-    } else {
-      return {
-        left: false,
-        right: false,
-      };
-    }
-  }
-
-  let response = { right: false, left: false };
-  if (tabu[row][sq - 1].piece === null) {
-    response.right = true;
-  }
-  if (tabu[row][sq + 1].piece === null) {
-    response.left = true;
-  }
-  return response;
-}
-
-export function handleBorder() {
-  const result = tabu.map((row) => {
-    return row.map((sq) => {
-      if (sq && sq.id && sq.piece) {
-        if (sq.piece === pieceDarker) {
-          return { ...sq, allowed: handleAllowedDarken(sq) };
-        } else {
-          return { ...sq, allowed: handleAllowedLighter(sq) };
-        }
-      }
-      return sq;
-    });
-  });
-  return result;
-}
-
-function getIndex(square) {
+function handleGetIndex({ board, square }) {
   let indexSquare = null;
 
-  tabu.forEach((row) =>
+  board.forEach((row) =>
     row.forEach((sq) => {
       if (sq && sq.id && sq.id === square.id) {
         indexSquare = {
-          row: tabu.indexOf(row),
+          row: board.indexOf(row),
           index: row.indexOf(sq),
           color: sq.piece,
         };
@@ -546,93 +346,149 @@ function getIndex(square) {
 
   return indexSquare;
 }
+//Handle if the peace can move by her position in the board
+export function handlePositionPiece({ board, square }) {
+  const squareIndex = handleGetIndex({ board, square });
 
-export function showMovements(square) {
-  // Finding index square
-  let indexSquare = getIndex(square);
-
-  // movements for black
-
-  if (indexSquare.color === pieceDarker) {
-    // se ele for 9 ele so move pra direita, se ele for 1 ele so move pra esquerda
-    const row = indexSquare.row + 1;
-    const sq = indexSquare.index;
-
-    // if is on the edge
-    if (row > 9 || row < 0) {
-      return false;
-    }
-
-    // move if index is 9
-    if (indexSquare.index === 9) {
+  // lighter
+  if (squareIndex.color === pieceLighter) {
+    // if position is 9
+    if (squareIndex.index === 9) {
       return {
-        left: null,
-        right: { ...tabu[row][sq - 1], row, square: sq - 1 },
-      };
-    }
-    // move if index is 1
-    if (indexSquare.index === 0) {
-      return {
-        left: { ...tabu[row][sq + 1], row, square: sq + 1 },
-        right: null,
+        right: false,
+        left: true,
       };
     }
 
-    // move on both sides
-    return {
-      right: { ...tabu[row][sq - 1], row, square: sq - 1 },
-      left: { ...tabu[row][sq + 1], row, square: sq + 1 },
-    };
+    // if position is 0
+    if (squareIndex.index === 0) {
+      return {
+        right: true,
+        left: false,
+      };
+    }
+  } else {
+    // darker
+
+    // if position is 9
+    if (squareIndex.index === 9) {
+      return {
+        right: true,
+        left: false,
+      };
+    }
+
+    // if position is 0
+    if (squareIndex.index === 0) {
+      return {
+        right: false,
+        left: true,
+      };
+    }
   }
 
-  // movements for white
-  else {
-    // se ele for 9 ele so move pra direita, se ele for 1 ele so move pra esquerda
-    const row = indexSquare.row - 1;
-    const sq = indexSquare.index;
+  // if is allowed on two ways
+  return {
+    right: true,
+    left: true,
+  };
+}
 
-    // if is on the edge
-    if (row > 9 || row < 0) {
-      return false;
+export function handleAllowedPiece({ board, square, allowedMovements }) {
+  const squareIndex = handleGetIndex({ board, square });
+
+  // light
+  // if right is allowed
+  // if left is allowed
+  // if both sides are allowed
+  if (squareIndex.color === pieceLighter) {
+    const row = squareIndex.row - 1;
+    const index = squareIndex.index;
+
+    if (allowedMovements.right) {
+      const indexFutureSquare = handleGetIndex({
+        board,
+        square: board[row][index + 1],
+      });
+      if (indexFutureSquare.color !== pieceLighter) {
+        // verificar se pode comer
+        allowedMovements.right = indexFutureSquare;
+      } else {
+        allowedMovements.right = false;
+      }
     }
 
-    // move if index is 9
-    if (indexSquare.index === 9) {
-      return {
-        left: { ...tabu[row][sq - 1], row, square: sq - 1 },
-        right: null,
-      };
-    }
-    // move if index is 1
-    if (indexSquare.index === 0) {
-      return {
-        left: null,
-        right: { ...tabu[row][sq + 1], row, square: sq + 1 },
-      };
+    if (allowedMovements.left) {
+      const indexFutureSquare = handleGetIndex({
+        board,
+        square: board[row][index - 1],
+      });
+      if (indexFutureSquare.color !== pieceLighter) {
+        // verificar se pode comer
+        allowedMovements.left = indexFutureSquare;
+      } else {
+        allowedMovements.left = false;
+      }
     }
 
-    // move on both sides
-    return {
-      left: { ...tabu[row][sq - 1], row, square: sq - 1 },
-      right: { ...tabu[row][sq + 1], row, square: sq + 1 },
-    };
+    return allowedMovements;
+  } else {
+    // dark
+    // if right is allowed
+    // if left is allowed
+    // if both sides are allowed
+    const row = squareIndex.row + 1;
+    const index = squareIndex.index;
+
+    if (allowedMovements.right) {
+      const indexFutureSquare = handleGetIndex({
+        board,
+        square: board[row][index - 1],
+      });
+      if (indexFutureSquare.color !== pieceDarker) {
+        // verificar se pode comer
+        allowedMovements.right = indexFutureSquare;
+      } else {
+        allowedMovements.right = false;
+      }
+    }
+
+    if (allowedMovements.left) {
+      const indexFutureSquare = handleGetIndex({
+        board,
+        square: board[row][index + 1],
+      });
+      if (indexFutureSquare.color !== pieceDarker) {
+        // verificar se pode comer
+        allowedMovements.left = indexFutureSquare;
+      } else {
+        allowedMovements.left = false;
+      }
+    }
+
+    return allowedMovements;
   }
 }
 
-export function handleMove(actualPiece, futurePiece) {
-  // checking if futurePiece is available
-  if (!futurePiece.available) {
-    return;
+export function printAllowedMovements({ allowedMovements }) {
+  const newBoard = JSON.parse(JSON.stringify(board));
+
+  if (allowedMovements.right) {
+    newBoard[allowedMovements.right.row][
+      allowedMovements.right.index
+    ].color = darken(
+      0.2,
+      newBoard[allowedMovements.right.row][allowedMovements.right.index].color
+    );
   }
 
-  const indexActualPiece = getIndex(actualPiece);
-  const indexFuturePiece = getIndex(futurePiece);
-
-  // removing actual piece
-  const pieceMoved = tabu[indexActualPiece.row][indexActualPiece.index].piece;
-
-  tabu[indexActualPiece.row][indexActualPiece.index].piece = null;
-
-  // puting in the future square
-  tabu[indexFuturePiece.row][indexFuturePiece.index].piece = pieceMoved;
+  if (allowedMovements.left) {
+    newBoard[allowedMovements.left.row][
+      allowedMovements.left.index
+    ].color = darken(
+      0.2,
+      newBoard[allowedMovements.left.row][allowedMovements.left.index].color
+    );
+  }
+  return newBoard;
 }

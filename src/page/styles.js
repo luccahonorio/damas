@@ -26,7 +26,6 @@ export const Square = styled.div`
   border: 1px;
   justify-content: center;
   align-items: center;
-  cursor: ${(props) => (props.available ? 'pointer' : 'auto')};
 `;
 
 export const Piece = styled.div`
@@ -37,12 +36,5 @@ export const Piece = styled.div`
   -webkit-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
-  cursor: ${(props) =>
-    (props.allowed &&
-      props.allowed.right &&
-      props.allowed.left &&
-      props.allowed.right === true) ||
-    props.allowed.left === true
-      ? 'pointer'
-      : 'not-allowed'};
+  cursor: pointer;
 `;
