@@ -470,8 +470,22 @@ export function handleAllowedPiece({ board, square, allowedMovements }) {
   }
 }
 
-export function printAllowedMovements({ allowedMovements }) {
-  const newBoard = JSON.parse(JSON.stringify(board));
+function copyBoard({ board }) {
+  const newBoard = JSON.parse(JSON.stringify(board)).map((row) => {
+    return row.map((sq) => {
+      if (sq.color !== squareDarker) {
+        if (sq && sq.id) {
+          sq.color = squareDarker;
+        }
+      }
+      return sq;
+    });
+  });
+  return newBoard;
+}
+
+export function printAllowedMovements({ allowedMovements, board }) {
+  const newBoard = copyBoard({ board });
 
   if (allowedMovements.right) {
     newBoard[allowedMovements.right.row][
@@ -492,3 +506,5 @@ export function printAllowedMovements({ allowedMovements }) {
   }
   return newBoard;
 }
+
+export function handlePieceMovement({ squareSelected, selected }) {}

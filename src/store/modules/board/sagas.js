@@ -18,8 +18,8 @@ export function* handlePrintMovements({ payload }) {
     allowedMovements: allowedPositions,
   });
 
-  const newBoard = printAllowedMovements({ allowedMovements });
-  yield put(handlePrintMovementsSuccess({ board: newBoard }));
+  const newBoard = printAllowedMovements({ allowedMovements, board });
+  yield put(handlePrintMovementsSuccess({ board: newBoard, selected: square }));
 }
 
 export default all([

@@ -12,9 +12,9 @@ export function handlePrintMovements({ board, square }) {
   };
 }
 
-export function handlePrintMovementsSuccess({ board }) {
+export function handlePrintMovementsSuccess({ board, selected }) {
   return {
     type: '@board/HANDLE_PRINT_MOVEMENTS_SUCCESS',
-    payload: { board },
+    payload: { board, selected },
   };
 }
