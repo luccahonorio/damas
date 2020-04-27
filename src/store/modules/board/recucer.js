@@ -14,6 +14,11 @@ export default function board(state = INITIAL_STATE, action) {
         draft.selected = action.payload.selected;
         break;
       }
+      case '@board/HANDLE_MOVE_PIECES_SUCCESS': {
+        draft.board = Object.values(action.payload.board);
+        draft.selected = { square: null, position: {} };
+        break;
+      }
       default:
     }
   });

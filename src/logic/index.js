@@ -339,6 +339,7 @@ function handleGetIndex({ board, square }) {
           row: board.indexOf(row),
           index: row.indexOf(sq),
           color: sq.piece,
+          id: sq.id,
         };
       }
     })
@@ -508,3 +509,15 @@ export function printAllowedMovements({ allowedMovements, board }) {
 }
 
 export function handlePieceMovement({ squareSelected, selected }) {}
+
+export function handleMovePiece({ board, futureSquare, actualSquare }) {
+  const newBoard = copyBoard({ board });
+  const idFutureSquare = handleGetIndex({ board, square: futureSquare });
+  const idActualSquare = handleGetIndex({ board, square: actualSquare });
+
+  newBoard[idFutureSquare.row][idFutureSquare.index].piece = actualSquare.piece;
+
+  newBoard[idActualSquare.row][idActualSquare.index].piece = null;
+
+  return newBoard;
+}
