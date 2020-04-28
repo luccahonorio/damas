@@ -347,6 +347,14 @@ function handleGetIndex({ board, square }) {
 
   return indexSquare;
 }
+
+function handleEatPiece({ future, direction }) {
+  if (!future.color) return future;
+  if (future.color === pieceDarker) {
+  } else {
+  }
+}
+
 //Handle if the peace can move by her position in the board
 export function handlePositionPiece({ board, square }) {
   const squareIndex = handleGetIndex({ board, square });
@@ -412,8 +420,10 @@ export function handleAllowedPiece({ board, square, allowedMovements }) {
         square: board[row][index + 1],
       });
       if (indexFutureSquare.color !== pieceLighter) {
-        // verificar se pode comer
-        allowedMovements.right = indexFutureSquare;
+        allowedMovements.right = handleEatPiece({
+          future: indexFutureSquare,
+          direction: 'right',
+        });
       } else {
         allowedMovements.right = false;
       }
