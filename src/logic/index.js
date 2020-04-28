@@ -398,11 +398,18 @@ export function showMovement({ board, square }) {
 
 function checkEatingLight({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
+
   if (direction === 'left') {
+    if (squareInfo.index === 0) {
+      return false;
+    }
     if (!board[squareInfo.row - 1][squareInfo.index - 1].piece) {
       return true;
     }
   } else {
+    if (squareInfo.index === 9) {
+      return false;
+    }
     if (!board[squareInfo.row - 1][squareInfo.index + 1].piece) {
       return true;
     }
@@ -413,10 +420,16 @@ function checkEatingLight({ board, square, direction }) {
 function checkEatingDark({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (direction === 'left') {
+    if (squareInfo.index === 9) {
+      return false;
+    }
     if (!board[squareInfo.row + 1][squareInfo.index + 1].piece) {
       return true;
     }
   } else {
+    if (squareInfo.index === 0) {
+      return false;
+    }
     if (!board[squareInfo.row + 1][squareInfo.index - 1].piece) {
       return true;
     }
@@ -437,6 +450,8 @@ function showMovementLight({ board, squareInfo }) {
         const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
         nextLeft.color = squareSelected;
         return board;
+      } else {
+        return board;
       }
     }
 
@@ -453,6 +468,8 @@ function showMovementLight({ board, squareInfo }) {
       if (checkEatingLight({ board, square: right, direction: 'right' })) {
         const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
         nextRight.color = squareSelected;
+        return board;
+      } else {
         return board;
       }
     }
@@ -473,6 +490,8 @@ function showMovementLight({ board, squareInfo }) {
       const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
       nextLeft.color = squareSelected;
       return board;
+    } else {
+      verify.left = false;
     }
   }
 
@@ -486,6 +505,8 @@ function showMovementLight({ board, squareInfo }) {
       const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
       return board;
+    } else {
+      verify.right = false;
     }
   }
 
@@ -512,6 +533,8 @@ function showMovementDark({ board, squareInfo }) {
         const nextRight = board[squareInfo.row + 2][squareInfo.index - 2];
         nextRight.color = squareSelected;
         return board;
+      } else {
+        return board;
       }
     }
 
@@ -528,6 +551,8 @@ function showMovementDark({ board, squareInfo }) {
       if (checkEatingDark({ board, square: left, direction: 'left' })) {
         const nextleft = board[squareInfo.row + 2][squareInfo.index + 2];
         nextleft.color = squareSelected;
+        return board;
+      } else {
         return board;
       }
     }
@@ -548,6 +573,8 @@ function showMovementDark({ board, squareInfo }) {
       const nextright = board[squareInfo.row + 2][squareInfo.index - 2];
       nextright.color = squareSelected;
       return board;
+    } else {
+      verify.right = false;
     }
   }
 
@@ -561,6 +588,8 @@ function showMovementDark({ board, squareInfo }) {
       const nextRight = board[squareInfo.row + 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
       return board;
+    } else {
+      verify.left = false;
     }
   }
 
@@ -589,6 +618,27 @@ export function movePiece({ board, square, selected }) {
 
   // remove
   newBoard[selectedInfo.row][selectedInfo.index].piece = null;
+
+  // branco
+  if (selectedInfo.row - squareInfo.row === 2) {
+    if (squareInfo.index > selectedInfo.index) {
+      //right
+      newBoard[selectedInfo.row - 1][selectedInfo.index + 1].piece = null;
+    } else {
+      //left
+      newBoard[selectedInfo.row - 1][selectedInfo.index - 1].piece = null;
+    }
+  }
+  // preta
+  if (squareInfo.row - selectedInfo.row === 2) {
+    if (selectedInfo.index > squareInfo.index) {
+      //right
+      newBoard[selectedInfo.row + 1][selectedInfo.index - 1].piece = null;
+    } else {
+      //left
+      newBoard[selectedInfo.row + 1][selectedInfo.index + 1].piece = null;
+    }
+  }
 
   return newBoard;
 }
