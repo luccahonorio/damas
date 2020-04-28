@@ -368,10 +368,8 @@ function getSquareInfo({ board, square }) {
 function copyBoard({ board }) {
   const newBoard = JSON.parse(JSON.stringify(board)).map((row) => {
     return row.map((sq) => {
-      if (sq.squareColor !== squareColorDarker) {
-        if (sq && sq.id) {
-          sq.squareColor = squareColorDarker;
-        }
+      if (sq.color === squareSelected) {
+        sq.color = squareColorDarker;
       }
       return sq;
     });
@@ -462,6 +460,42 @@ function showMovementLight({ board, squareInfo }) {
     return board;
   }
   // pode mover para os dois lados
+  const verify = { left: true, right: true };
+
+  // left
+  const left = board[squareInfo.row - 1][squareInfo.index - 1];
+  if (left.piece && left.piece.color === pieceLighter) {
+    verify.left = false;
+  }
+  if (left.piece && left.piece.color !== pieceLighter) {
+    if (checkEatingLight({ board, square: left, direction: 'left' })) {
+      const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
+      nextLeft.color = squareSelected;
+      return board;
+    }
+  }
+
+  // right
+  const right = board[squareInfo.row - 1][squareInfo.index + 1];
+  if (right.piece && right.piece.color === pieceLighter) {
+    verify.right = false;
+  }
+  if (right.piece && right.piece.color !== pieceLighter) {
+    if (checkEatingLight({ board, square: right, direction: 'right' })) {
+      const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
+      nextRight.color = squareSelected;
+      return board;
+    }
+  }
+
+  if (verify.right) {
+    right.color = squareSelected;
+  }
+  if (verify.left) {
+    left.color = squareSelected;
+  }
+
+  return board;
 }
 
 function showMovementDark() {}
