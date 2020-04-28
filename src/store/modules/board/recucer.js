@@ -11,6 +11,9 @@ export default function board(state = INITIAL_STATE, action) {
       case '@board/SHOW_MOVEMENTS':
         draft.board = action.payload.board;
         break;
+      case '@board/MOVE_PIECES':
+        draft.board = action.payload.board;
+        break;
       default:
     }
   });

@@ -4,3 +4,10 @@ export function showMovementsAction({ board }) {
     payload: { board },
   };
 }
+
+export function movePiecesAction({ board }) {
+  return {
+    type: '@board/MOVE_PIECES',
+    payload: { board },
+  };
+}
