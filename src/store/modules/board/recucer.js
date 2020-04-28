@@ -1,24 +1,16 @@
 import produce from 'immer';
-import { board as boardDefault } from '../../../logic/index';
+import { board as defaultBoard } from '../../../logic';
 
 const INITIAL_STATE = {
-  board: boardDefault,
-  selected: { square: null, positions: {} },
+  board: defaultBoard,
 };
 
 export default function board(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case '@board/HANDLE_PRINT_MOVEMENTS_SUCCESS': {
-        draft.board = Object.values(action.payload.board);
-        draft.selected = action.payload.selected;
+      case '@board/SHOW_MOVEMENTS':
+        draft.board = action.payload.board;
         break;
-      }
-      case '@board/HANDLE_MOVE_PIECES_SUCCESS': {
-        draft.board = Object.values(action.payload.board);
-        draft.selected = { square: null, position: {} };
-        break;
-      }
       default:
     }
   });

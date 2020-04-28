@@ -1,335 +1,352 @@
 import { darken } from 'polished';
 
-export const squareLighter = 'rgb(212,198,159)';
-export const squareDarker = 'rgb(142,108,80)';
+const squareColorLighter = 'rgb(212,198,159)';
+const squareColorDarker = 'rgb(142,108,80)';
 
-export const pieceDarker = 'rgb(82,57,47)';
-export const pieceLighter = 'rgb(230,183,79)';
+const pieceDarker = 'rgb(82,57,47)';
+const pieceLighter = 'rgb(230,183,79)';
+
+const squareSelected = darken(0.2, squareColorDarker);
+
+function piece({ color }) {
+  return {
+    color: color === pieceDarker ? pieceDarker : pieceLighter,
+    queen: false,
+  };
+}
+
+function square({ id, piece, color }) {
+  return {
+    id,
+    piece,
+    color: color === squareColorDarker ? squareColorDarker : squareColorLighter,
+  };
+}
 
 export const board = [
   [
-    { piece: null, color: squareLighter },
-    {
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 1,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 2,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 3,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 4,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 5,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
   ],
   [
-    {
+    square({
       id: 6,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 7,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 8,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 9,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 10,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
   ],
   [
-    { piece: null, color: squareLighter },
-    {
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 11,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 12,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 13,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 14,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 15,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
   ],
   [
-    {
+    square({
       id: 16,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 17,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 18,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 19,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 20,
-      piece: pieceDarker,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
+      piece: piece({ color: pieceDarker }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
   ],
   [
-    { piece: null, color: squareLighter },
-    {
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 21,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 22,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 23,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 24,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 25,
       piece: null,
-      color: squareDarker,
-    },
+      color: squareColorDarker,
+    }),
   ],
   [
-    {
+    square({
       id: 26,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 27,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 28,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 29,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 30,
       piece: null,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
   ],
   [
-    { piece: null, color: squareLighter },
-    {
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 31,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 32,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 33,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 34,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 35,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
   ],
   [
-    {
+    square({
       id: 36,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 37,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 38,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 39,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 40,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
   ],
   [
-    { piece: null, color: squareLighter },
-    {
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 41,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 42,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 43,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 44,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 45,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
   ],
   [
-    {
+    square({
       id: 46,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 47,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 48,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 49,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
-    {
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
+    square({
       id: 50,
-      piece: pieceLighter,
-      color: squareDarker,
-    },
-    { piece: null, color: squareLighter },
+      piece: piece({ color: pieceLighter }),
+      color: squareColorDarker,
+    }),
+    square({ id: null, piece: null, color: squareColorLighter }),
   ],
 ];
 
-function handleGetIndex({ board, square }) {
+function getSquareInfo({ board, square }) {
   let indexSquare = null;
 
   board.forEach((row) =>
@@ -338,7 +355,7 @@ function handleGetIndex({ board, square }) {
         indexSquare = {
           row: board.indexOf(row),
           index: row.indexOf(sq),
-          color: sq.piece,
+          piece: sq.piece,
           id: sq.id,
         };
       }
@@ -348,145 +365,12 @@ function handleGetIndex({ board, square }) {
   return indexSquare;
 }
 
-function handleEatPiece({ future, direction }) {
-  if (!future.color) return future;
-  if (future.color === pieceDarker) {
-  } else {
-  }
-}
-
-//Handle if the peace can move by her position in the board
-export function handlePositionPiece({ board, square }) {
-  const squareIndex = handleGetIndex({ board, square });
-
-  // lighter
-  if (squareIndex.color === pieceLighter) {
-    // if position is 9
-    if (squareIndex.index === 9) {
-      return {
-        right: false,
-        left: true,
-      };
-    }
-
-    // if position is 0
-    if (squareIndex.index === 0) {
-      return {
-        right: true,
-        left: false,
-      };
-    }
-  } else {
-    // darker
-
-    // if position is 9
-    if (squareIndex.index === 9) {
-      return {
-        right: true,
-        left: false,
-      };
-    }
-
-    // if position is 0
-    if (squareIndex.index === 0) {
-      return {
-        right: false,
-        left: true,
-      };
-    }
-  }
-
-  // if is allowed on two ways
-  return {
-    right: true,
-    left: true,
-  };
-}
-
-export function handleAllowedPiece({ board, square, allowedMovements }) {
-  const squareIndex = handleGetIndex({ board, square });
-
-  // light
-  // if right is allowed
-  // if left is allowed
-  // if both sides are allowed
-  if (squareIndex.color === pieceLighter) {
-    const row = squareIndex.row - 1;
-    const index = squareIndex.index;
-
-    if (allowedMovements.right) {
-      const indexFutureSquare = handleGetIndex({
-        board,
-        square: board[row][index + 1],
-      });
-      if (indexFutureSquare.color !== pieceLighter) {
-        allowedMovements.right = handleEatPiece({
-          future: indexFutureSquare,
-          direction: 'right',
-        });
-      } else {
-        allowedMovements.right = false;
-      }
-    }
-
-    if (allowedMovements.left) {
-      const indexFutureSquare = handleGetIndex({
-        board,
-        square: board[row][index - 1],
-      });
-      if (indexFutureSquare.color !== pieceLighter) {
-        // verificar se pode comer
-        allowedMovements.left = indexFutureSquare;
-      } else {
-        allowedMovements.left = false;
-      }
-    }
-
-    return allowedMovements;
-  } else {
-    // dark
-    // if right is allowed
-    // if left is allowed
-    // if both sides are allowed
-    const row = squareIndex.row + 1;
-    const index = squareIndex.index;
-
-    if (allowedMovements.right) {
-      const indexFutureSquare = handleGetIndex({
-        board,
-        square: board[row][index - 1],
-      });
-      if (indexFutureSquare.color !== pieceDarker) {
-        // verificar se pode comer
-        allowedMovements.right = indexFutureSquare;
-      } else {
-        allowedMovements.right = false;
-      }
-    }
-
-    if (allowedMovements.left) {
-      const indexFutureSquare = handleGetIndex({
-        board,
-        square: board[row][index + 1],
-      });
-      if (indexFutureSquare.color !== pieceDarker) {
-        // verificar se pode comer
-        allowedMovements.left = indexFutureSquare;
-      } else {
-        allowedMovements.left = false;
-      }
-    }
-
-    return allowedMovements;
-  }
-}
-
 function copyBoard({ board }) {
   const newBoard = JSON.parse(JSON.stringify(board)).map((row) => {
     return row.map((sq) => {
-      if (sq.color !== squareDarker) {
+      if (sq.squareColor !== squareColorDarker) {
         if (sq && sq.id) {
-          sq.color = squareDarker;
+          sq.squareColor = squareColorDarker;
         }
       }
       return sq;
@@ -495,39 +379,91 @@ function copyBoard({ board }) {
   return newBoard;
 }
 
-export function printAllowedMovements({ allowedMovements, board }) {
+// mostra os movimentos possíveis da peça
+export function showMovement({ board, square }) {
   const newBoard = copyBoard({ board });
+  const squareInfo = getSquareInfo({ board, square });
 
-  if (allowedMovements.right) {
-    newBoard[allowedMovements.right.row][
-      allowedMovements.right.index
-    ].color = darken(
-      0.2,
-      newBoard[allowedMovements.right.row][allowedMovements.right.index].color
-    );
+  // se ele é rainha
+  if (square.piece.queen) {
+    return showMovementQueen();
+  }
+  // se ele é branco
+  if (square.piece.color === pieceLighter) {
+    return showMovementLight({ squareInfo, board: newBoard });
   }
 
-  if (allowedMovements.left) {
-    newBoard[allowedMovements.left.row][
-      allowedMovements.left.index
-    ].color = darken(
-      0.2,
-      newBoard[allowedMovements.left.row][allowedMovements.left.index].color
-    );
+  // se ele é preto
+  return showMovementDark({ squareInfo, board: newBoard });
+}
+
+function checkEatingLight({ board, square, direction }) {
+  const squareInfo = getSquareInfo({ board, square });
+  if (direction === 'left') {
+    if (!board[squareInfo.row - 1][squareInfo.index - 1].piece) {
+      return true;
+    }
+  } else {
+    if (!board[squareInfo.row - 1][squareInfo.index + 1].piece) {
+      return true;
+    }
   }
-  return newBoard;
+  return false;
 }
 
-export function handlePieceMovement({ squareSelected, selected }) {}
-
-export function handleMovePiece({ board, futureSquare, actualSquare }) {
-  const newBoard = copyBoard({ board });
-  const idFutureSquare = handleGetIndex({ board, square: futureSquare });
-  const idActualSquare = handleGetIndex({ board, square: actualSquare });
-
-  newBoard[idFutureSquare.row][idFutureSquare.index].piece = actualSquare.piece;
-
-  newBoard[idActualSquare.row][idActualSquare.index].piece = null;
-
-  return newBoard;
+function checkEatingDark({ board, square, direction }) {
+  const squareInfo = getSquareInfo({ board, square });
+  if (direction === 'left') {
+    if (!board[squareInfo.row + 1][squareInfo.index + 1].piece) {
+      return true;
+    }
+  } else {
+    if (!board[squareInfo.row + 1][squareInfo.index - 1].piece) {
+      return true;
+    }
+  }
+  return false;
 }
+
+function showMovementLight({ board, squareInfo }) {
+  // se ele tiver na posicao 0 ele nao anda mais e vira rainha
+  // se for 9 só pode mover pra esquerda
+  if (squareInfo.index === 9) {
+    const left = board[squareInfo.row - 1][squareInfo.index - 1];
+    if (left.piece && left.piece.color === pieceLighter) {
+      return board;
+    }
+    if (left.piece && left.piece.color !== pieceLighter) {
+      if (checkEatingLight({ board, square: left, direction: 'left' })) {
+        const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
+        nextLeft.color = squareSelected;
+        return board;
+      }
+    }
+
+    left.color = squareSelected;
+    return board;
+  }
+  // se for 0 só pode mover pra direita
+  if (squareInfo.index === 0) {
+    const right = board[squareInfo.row - 1][squareInfo.index + 1];
+    if (right.piece && right.piece.color === pieceLighter) {
+      return board;
+    }
+    if (right.piece && right.piece.color !== pieceLighter) {
+      if (checkEatingLight({ board, square: right, direction: 'right' })) {
+        const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
+        nextRight.color = squareSelected;
+        return board;
+      }
+    }
+
+    right.color = squareSelected;
+    return board;
+  }
+  // pode mover para os dois lados
+}
+
+function showMovementDark() {}
+
+function showMovementQueen() {}
