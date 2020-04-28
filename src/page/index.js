@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaCrown } from 'react-icons/fa';
 
 import { Container, Board, Square, Piece } from './styles';
 import { showMovement, movePiece } from '../logic';
@@ -41,7 +42,9 @@ export default function Page() {
                   key={row.indexOf(sq)}
                   color={sq.piece.color}
                   onClick={() => showMovements({ square: sq })}
-                />
+                >
+                  {sq.piece.queen && <FaCrown size={20} />}
+                </Piece>
               )}
             </Square>
           ))

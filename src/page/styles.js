@@ -29,6 +29,10 @@ export const Square = styled.div`
 `;
 
 export const Piece = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 75%;
   height: 75%;
   border-radius: 50%;

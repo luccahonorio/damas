@@ -1,5 +1,4 @@
 import { darken } from 'polished';
-import { FaCrown } from 'react-icons/fa';
 
 const squareColorLighter = 'rgb(212,198,159)';
 const squareColorDarker = 'rgb(142,108,80)';
@@ -398,7 +397,14 @@ export function showMovement({ board, square }) {
 
 function checkEatingLight({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
-
+  if (
+    squareInfo.row === 1 ||
+    squareInfo.row === 8 ||
+    squareInfo.row === 0 ||
+    squareInfo.row === 9
+  ) {
+    return false;
+  }
   if (direction === 'left') {
     if (squareInfo.index === 0) {
       return false;
@@ -419,6 +425,14 @@ function checkEatingLight({ board, square, direction }) {
 
 function checkEatingDark({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
+  if (
+    squareInfo.row === 1 ||
+    squareInfo.row === 8 ||
+    squareInfo.row === 0 ||
+    squareInfo.row === 9
+  ) {
+    return false;
+  }
   if (direction === 'left') {
     if (squareInfo.index === 9) {
       return false;
@@ -440,6 +454,10 @@ function checkEatingDark({ board, square, direction }) {
 function showMovementLight({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
+  if (squareInfo.row === 0) {
+    return board;
+  }
+
   if (squareInfo.index === 9) {
     const left = board[squareInfo.row - 1][squareInfo.index - 1];
     if (left && left.piece && left.piece.color === pieceLighter) {
@@ -523,6 +541,10 @@ function showMovementLight({ board, squareInfo }) {
 function showMovementDark({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
+  if (squareInfo.row === 9) {
+    return board;
+  }
+
   if (squareInfo.index === 9) {
     const right = board[squareInfo.row + 1][squareInfo.index - 1];
     if (right && right.piece && right.piece.color === pieceDarker) {
@@ -610,11 +632,22 @@ export function movePiece({ board, square, selected }) {
 
   const selectedInfo = getSquareInfo({ board, square: selected });
   const squareInfo = getSquareInfo({ board, square });
-
   const newBoard = copyBoard({ board });
 
   // add
   newBoard[squareInfo.row][squareInfo.index].piece = selected.piece;
+
+  // check if can be a queen
+  if (square && !square.piece) {
+    // white
+    if (squareInfo.row === 9) {
+      newBoard[squareInfo.row][squareInfo.index].piece.queen = true;
+    }
+    // black
+    if (squareInfo.row === 0) {
+      newBoard[squareInfo.row][squareInfo.index].piece.queen = true;
+    }
+  }
 
   // remove
   newBoard[selectedInfo.row][selectedInfo.index].piece = null;
