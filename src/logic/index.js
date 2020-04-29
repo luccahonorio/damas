@@ -8,7 +8,7 @@ const pieceLighter = 'rgb(230,183,79)';
 
 export const squareSelected = darken(0.2, squareColorDarker);
 
-function piece({ color, queen = false }) {
+function piece({ color, queen = true }) {
   return {
     color: color === pieceDarker ? pieceDarker : pieceLighter,
     queen,
@@ -549,7 +549,7 @@ function showMovementLightQueen({ board, squareInfo }) {
         const newBoard = copyBoard({ board });
         const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
         nextLeft.color = squareSelected;
-        return newBoard;
+        return { newBoard };
       } else {
         return board;
       }
@@ -569,7 +569,7 @@ function showMovementLightQueen({ board, squareInfo }) {
         const newBoard = copyBoard({ board });
         const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
         nextRight.color = squareSelected;
-        return newBoard;
+        return { newBoard };
       } else {
         return board;
       }
@@ -591,7 +591,7 @@ function showMovementLightQueen({ board, squareInfo }) {
       const newBoard = copyBoard({ board });
       const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
       nextLeft.color = squareSelected;
-      return newBoard;
+      return { newBoard };
     } else {
       verify.left = false;
     }
@@ -607,7 +607,7 @@ function showMovementLightQueen({ board, squareInfo }) {
       const newBoard = copyBoard({ board });
       const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
-      return newBoard;
+      return { newBoard };
     } else {
       verify.right = false;
     }
@@ -732,7 +732,7 @@ function showMovementDarkQueen({ board, squareInfo }) {
         const newBoard = copyBoard({ board });
         const nextRight = newBoard[squareInfo.row + 2][squareInfo.index - 2];
         nextRight.color = squareSelected;
-        return newBoard;
+        return { newBoard };
       } else {
         return board;
       }
@@ -752,7 +752,7 @@ function showMovementDarkQueen({ board, squareInfo }) {
         const newBoard = copyBoard({ board });
         const nextleft = newBoard[squareInfo.row + 2][squareInfo.index + 2];
         nextleft.color = squareSelected;
-        return newBoard;
+        return { newBoard };
       } else {
         return board;
       }
@@ -774,7 +774,7 @@ function showMovementDarkQueen({ board, squareInfo }) {
       const newBoard = copyBoard({ board });
       const nextright = newBoard[squareInfo.row + 2][squareInfo.index - 2];
       nextright.color = squareSelected;
-      return newBoard;
+      return { newBoard };
     } else {
       verify.right = false;
     }
@@ -790,7 +790,7 @@ function showMovementDarkQueen({ board, squareInfo }) {
       const newBoard = copyBoard({ board });
       const nextRight = newBoard[squareInfo.row + 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
-      return newBoard;
+      return { newBoard };
     } else {
       verify.left = false;
     }
@@ -808,11 +808,17 @@ function showMovementDarkQueen({ board, squareInfo }) {
 
 function showMovementQueen({ board, squareInfo }) {
   if (squareInfo.piece.color === pieceLighter) {
-    const boardLight = showMovementLight({ board, squareInfo });
-    return showMovementDarkQueen({ board: boardLight, squareInfo });
+    const boardDark = showMovementDarkQueen({ board, squareInfo });
+    if (!Array.isArray(boardDark)) {
+      return boardDark.newBoard;
+    }
+    return showMovementLight({ board: boardDark, squareInfo });
   }
-  const boardDark = showMovementDark({ board, squareInfo });
-  return showMovementLightQueen({ board: boardDark, squareInfo });
+  const boardLight = showMovementLightQueen({ board, squareInfo });
+  if (!Array.isArray(boardLight)) {
+    return boardLight.newBoard;
+  }
+  return showMovementDark({ board: boardLight, squareInfo });
 }
 
 export function movePiece({ board, square, selected }) {
