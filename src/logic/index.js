@@ -6,12 +6,12 @@ const squareColorDarker = 'rgb(142,108,80)';
 const pieceDarker = 'rgb(82,57,47)';
 const pieceLighter = 'rgb(230,183,79)';
 
-const squareSelected = darken(0.2, squareColorDarker);
+export const squareSelected = darken(0.2, squareColorDarker);
 
-function piece({ color }) {
+function piece({ color, queen = false }) {
   return {
     color: color === pieceDarker ? pieceDarker : pieceLighter,
-    queen: false,
+    queen,
   };
 }
 
@@ -384,7 +384,7 @@ export function showMovement({ board, square }) {
 
   // se ele é rainha
   if (square.piece.queen) {
-    return showMovementQueen();
+    return showMovementQueen({ squareInfo, board: newBoard });
   }
   // se ele é branco
   if (square.piece.color === pieceLighter) {
@@ -397,12 +397,7 @@ export function showMovement({ board, square }) {
 
 function checkEatingLight({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
-  if (
-    squareInfo.row === 1 ||
-    squareInfo.row === 8 ||
-    squareInfo.row === 0 ||
-    squareInfo.row === 9
-  ) {
+  if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
     return false;
   }
   if (direction === 'left') {
@@ -425,12 +420,7 @@ function checkEatingLight({ board, square, direction }) {
 
 function checkEatingDark({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
-  if (
-    squareInfo.row === 1 ||
-    squareInfo.row === 8 ||
-    squareInfo.row === 0 ||
-    squareInfo.row === 9
-  ) {
+  if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
     return false;
   }
   if (direction === 'left') {
@@ -465,9 +455,10 @@ function showMovementLight({ board, squareInfo }) {
     }
     if (left && left.piece && left.piece.color !== pieceLighter) {
       if (checkEatingLight({ board, square: left, direction: 'left' })) {
-        const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
+        const newBoard = copyBoard({ board });
+        const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
         nextLeft.color = squareSelected;
-        return board;
+        return newBoard;
       } else {
         return board;
       }
@@ -484,9 +475,10 @@ function showMovementLight({ board, squareInfo }) {
     }
     if (right && right.piece && right.piece.color !== pieceLighter) {
       if (checkEatingLight({ board, square: right, direction: 'right' })) {
-        const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
+        const newBoard = copyBoard({ board });
+        const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
         nextRight.color = squareSelected;
-        return board;
+        return newBoard;
       } else {
         return board;
       }
@@ -505,9 +497,10 @@ function showMovementLight({ board, squareInfo }) {
   }
   if (left && left.piece && left.piece.color !== pieceLighter) {
     if (checkEatingLight({ board, square: left, direction: 'left' })) {
-      const nextLeft = board[squareInfo.row - 2][squareInfo.index - 2];
+      const newBoard = copyBoard({ board });
+      const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
       nextLeft.color = squareSelected;
-      return board;
+      return newBoard;
     } else {
       verify.left = false;
     }
@@ -520,9 +513,101 @@ function showMovementLight({ board, squareInfo }) {
   }
   if (right && right.piece && right.piece.color !== pieceLighter) {
     if (checkEatingLight({ board, square: right, direction: 'right' })) {
-      const nextRight = board[squareInfo.row - 2][squareInfo.index + 2];
+      const newBoard = copyBoard({ board });
+      const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
+      return newBoard;
+    } else {
+      verify.right = false;
+    }
+  }
+
+  if (verify.right) {
+    right.color = squareSelected;
+  }
+  if (verify.left) {
+    left.color = squareSelected;
+  }
+
+  return board;
+}
+
+function showMovementLightQueen({ board, squareInfo }) {
+  // se ele tiver na posicao 0 ele nao anda mais e vira rainha
+  // se for 9 só pode mover pra esquerda
+  if (squareInfo.row === 0) {
+    return board;
+  }
+
+  if (squareInfo.index === 9) {
+    const left = board[squareInfo.row - 1][squareInfo.index - 1];
+    if (left && left.piece && left.piece.color === pieceDarker) {
       return board;
+    }
+    if (left && left.piece && left.piece.color !== pieceDarker) {
+      if (checkEatingLight({ board, square: left, direction: 'left' })) {
+        const newBoard = copyBoard({ board });
+        const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
+        nextLeft.color = squareSelected;
+        return newBoard;
+      } else {
+        return board;
+      }
+    }
+
+    left.color = squareSelected;
+    return board;
+  }
+  // se for 0 só pode mover pra direita
+  if (squareInfo.index === 0) {
+    const right = board[squareInfo.row - 1][squareInfo.index + 1];
+    if (right && right.piece && right.piece.color === pieceDarker) {
+      return board;
+    }
+    if (right && right.piece && right.piece.color !== pieceDarker) {
+      if (checkEatingLight({ board, square: right, direction: 'right' })) {
+        const newBoard = copyBoard({ board });
+        const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
+        nextRight.color = squareSelected;
+        return newBoard;
+      } else {
+        return board;
+      }
+    }
+
+    right.color = squareSelected;
+    return board;
+  }
+  // pode mover para os dois lados
+  const verify = { left: true, right: true };
+
+  // left
+  const left = board[squareInfo.row - 1][squareInfo.index - 1];
+  if (left && left.piece && left.piece.color === pieceDarker) {
+    verify.left = false;
+  }
+  if (left && left.piece && left.piece.color !== pieceDarker) {
+    if (checkEatingLight({ board, square: left, direction: 'left' })) {
+      const newBoard = copyBoard({ board });
+      const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
+      nextLeft.color = squareSelected;
+      return newBoard;
+    } else {
+      verify.left = false;
+    }
+  }
+
+  // right
+  const right = board[squareInfo.row - 1][squareInfo.index + 1];
+  if (right && right.piece && right.piece.color === pieceDarker) {
+    verify.right = false;
+  }
+  if (right && right.piece && right.piece.color !== pieceDarker) {
+    if (checkEatingLight({ board, square: right, direction: 'right' })) {
+      const newBoard = copyBoard({ board });
+      const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
+      nextRight.color = squareSelected;
+      return newBoard;
     } else {
       verify.right = false;
     }
@@ -541,6 +626,7 @@ function showMovementLight({ board, squareInfo }) {
 function showMovementDark({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
+
   if (squareInfo.row === 9) {
     return board;
   }
@@ -552,9 +638,10 @@ function showMovementDark({ board, squareInfo }) {
     }
     if (right && right.piece && right.piece.color !== pieceDarker) {
       if (checkEatingDark({ board, square: right, direction: 'right' })) {
-        const nextRight = board[squareInfo.row + 2][squareInfo.index - 2];
+        const newBoard = copyBoard({ board });
+        const nextRight = newBoard[squareInfo.row + 2][squareInfo.index - 2];
         nextRight.color = squareSelected;
-        return board;
+        return newBoard;
       } else {
         return board;
       }
@@ -571,9 +658,10 @@ function showMovementDark({ board, squareInfo }) {
     }
     if (left && left.piece && left.piece.color !== pieceDarker) {
       if (checkEatingDark({ board, square: left, direction: 'left' })) {
-        const nextleft = board[squareInfo.row + 2][squareInfo.index + 2];
+        const newBoard = copyBoard({ board });
+        const nextleft = newBoard[squareInfo.row + 2][squareInfo.index + 2];
         nextleft.color = squareSelected;
-        return board;
+        return newBoard;
       } else {
         return board;
       }
@@ -592,9 +680,10 @@ function showMovementDark({ board, squareInfo }) {
   }
   if (right && right.piece && right.piece.color !== pieceDarker) {
     if (checkEatingDark({ board, square: right, direction: 'right' })) {
-      const nextright = board[squareInfo.row + 2][squareInfo.index - 2];
+      const newBoard = copyBoard({ board });
+      const nextright = newBoard[squareInfo.row + 2][squareInfo.index - 2];
       nextright.color = squareSelected;
-      return board;
+      return newBoard;
     } else {
       verify.right = false;
     }
@@ -607,9 +696,10 @@ function showMovementDark({ board, squareInfo }) {
   }
   if (left.piece && left.piece.color !== pieceDarker) {
     if (checkEatingDark({ board, square: left, direction: 'left' })) {
-      const nextRight = board[squareInfo.row + 2][squareInfo.index + 2];
+      const newBoard = copyBoard({ board });
+      const nextRight = newBoard[squareInfo.row + 2][squareInfo.index + 2];
       nextRight.color = squareSelected;
-      return board;
+      return newBoard;
     } else {
       verify.left = false;
     }
@@ -625,7 +715,105 @@ function showMovementDark({ board, squareInfo }) {
   return board;
 }
 
-function showMovementQueen() {}
+function showMovementDarkQueen({ board, squareInfo }) {
+  // se ele tiver na posicao 0 ele nao anda mais e vira rainha
+  // se for 9 só pode mover pra esquerda
+  if (squareInfo.row === 9) {
+    return board;
+  }
+
+  if (squareInfo.index === 9) {
+    const right = board[squareInfo.row + 1][squareInfo.index - 1];
+    if (right && right.piece && right.piece.color === pieceLighter) {
+      return board;
+    }
+    if (right && right.piece && right.piece.color !== pieceLighter) {
+      if (checkEatingDark({ board, square: right, direction: 'right' })) {
+        const newBoard = copyBoard({ board });
+        const nextRight = newBoard[squareInfo.row + 2][squareInfo.index - 2];
+        nextRight.color = squareSelected;
+        return newBoard;
+      } else {
+        return board;
+      }
+    }
+
+    right.color = squareSelected;
+    return board;
+  }
+  // se for 0 só pode mover pra direita
+  if (squareInfo.index === 0) {
+    const left = board[squareInfo.row + 1][squareInfo.index + 1];
+    if (left && left.piece && left.piece.color === pieceLighter) {
+      return board;
+    }
+    if (left && left.piece && left.piece.color !== pieceLighter) {
+      if (checkEatingDark({ board, square: left, direction: 'left' })) {
+        const newBoard = copyBoard({ board });
+        const nextleft = newBoard[squareInfo.row + 2][squareInfo.index + 2];
+        nextleft.color = squareSelected;
+        return newBoard;
+      } else {
+        return board;
+      }
+    }
+
+    left.color = squareSelected;
+    return board;
+  }
+  // pode mover para os dois lados
+  const verify = { left: true, right: true };
+
+  // left
+  const right = board[squareInfo.row + 1][squareInfo.index - 1];
+  if (right && right.piece && right.piece.color === pieceLighter) {
+    verify.right = false;
+  }
+  if (right && right.piece && right.piece.color !== pieceLighter) {
+    if (checkEatingDark({ board, square: right, direction: 'right' })) {
+      const newBoard = copyBoard({ board });
+      const nextright = newBoard[squareInfo.row + 2][squareInfo.index - 2];
+      nextright.color = squareSelected;
+      return newBoard;
+    } else {
+      verify.right = false;
+    }
+  }
+
+  // right
+  const left = board[squareInfo.row + 1][squareInfo.index + 1];
+  if (left.piece && left.piece.color === pieceLighter) {
+    verify.left = false;
+  }
+  if (left.piece && left.piece.color !== pieceLighter) {
+    if (checkEatingDark({ board, square: left, direction: 'left' })) {
+      const newBoard = copyBoard({ board });
+      const nextRight = newBoard[squareInfo.row + 2][squareInfo.index + 2];
+      nextRight.color = squareSelected;
+      return newBoard;
+    } else {
+      verify.left = false;
+    }
+  }
+
+  if (verify.right) {
+    right.color = squareSelected;
+  }
+  if (verify.left) {
+    left.color = squareSelected;
+  }
+
+  return board;
+}
+
+function showMovementQueen({ board, squareInfo }) {
+  if (squareInfo.piece.color === pieceLighter) {
+    const boardLight = showMovementLight({ board, squareInfo });
+    return showMovementDarkQueen({ board: boardLight, squareInfo });
+  }
+  const boardDark = showMovementDark({ board, squareInfo });
+  return showMovementLightQueen({ board: boardDark, squareInfo });
+}
 
 export function movePiece({ board, square, selected }) {
   if (square.color !== squareSelected) return;

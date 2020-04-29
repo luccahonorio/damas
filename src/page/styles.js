@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '../assets/background.jpg';
-
+import { squareSelected } from '../logic';
 export const Container = styled.div`
   display: flex;
   min-height: 100%;
@@ -26,6 +26,7 @@ export const Square = styled.div`
   border: 1px;
   justify-content: center;
   align-items: center;
+  cursor: ${(props) => (props.color === squareSelected ? 'pointer' : 'auto')};
 `;
 
 export const Piece = styled.div`
