@@ -8,10 +8,11 @@ const pieceLighter = 'rgb(230,183,79)';
 
 export const squareSelected = darken(0.2, squareColorDarker);
 
-function piece({ color, queen = true }) {
+function piece({ color, queen = false, enable = true }) {
   return {
     color: color === pieceDarker ? pieceDarker : pieceLighter,
     queen,
+    enable,
   };
 }
 

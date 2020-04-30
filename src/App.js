@@ -1,5 +1,6 @@
 import React from 'react';
-import Page from './page';
+import Dashboard from './page/Dashboard';
+import Menu from './page/Menu';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
@@ -14,7 +15,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <GlobalStyle />
-        <Page />
+        <Dashboard />
       </PersistGate>
     </Provider>
   );

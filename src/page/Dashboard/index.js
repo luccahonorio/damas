@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaCrown } from 'react-icons/fa';
 
 import { Container, Board, Square, Piece } from './styles';
-import { showMovement, movePiece } from '../logic';
+import { showMovement, movePiece } from '../../logic';
 import {
   showMovementsAction,
   movePiecesAction,
-} from '../store/modules/board/actions';
+} from '../../store/modules/board/actions';
 
 export default function Page() {
   const dispatch = useDispatch();
