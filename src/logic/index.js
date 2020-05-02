@@ -1,9 +1,9 @@
 import { darken } from 'polished';
 
 const squareColorLighter = 'rgb(212,198,159)';
-const squareColorDarker = 'rgb(142,108,80)';
+export const squareColorDarker = 'rgb(142,108,80)';
 
-const pieceDarker = 'rgb(82,57,47)';
+export const pieceDarker = 'rgb(82,57,47)';
 const pieceLighter = 'rgb(230,183,79)';
 
 export const squareSelected = darken(0.2, squareColorDarker);
@@ -396,7 +396,7 @@ export function showMovement({ board, square }) {
   return showMovementDark({ squareInfo, board: newBoard });
 }
 
-function checkEatingLight({ board, square, direction }) {
+export function checkEatingLight({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
     return false;
@@ -419,7 +419,7 @@ function checkEatingLight({ board, square, direction }) {
   return false;
 }
 
-function checkEatingDark({ board, square, direction }) {
+export function checkEatingDark({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
     return false;
@@ -824,7 +824,6 @@ function showMovementQueen({ board, squareInfo }) {
 
 export function movePiece({ board, square, selected }) {
   if (square.color !== squareSelected) return;
-
   const selectedInfo = getSquareInfo({ board, square: selected });
   const squareInfo = getSquareInfo({ board, square });
   const newBoard = copyBoard({ board });

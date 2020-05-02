@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '../../assets/background-menu.jpg';
-import { squareSelected } from '../../logic';
+import { squareSelected, pieceDarker } from '../../logic';
 export const Container = styled.div`
   display: flex;
   min-height: 100%;
@@ -42,6 +42,6 @@ export const Piece = styled.div`
   -moz-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
 
-  cursor: ${(props) => (props.enable ? 'pointer' : 'not-allowed')};
-  cursor: pointer;
+  cursor: ${(props) =>
+    props.color === pieceDarker ? 'not-allowed' : 'pointer'};
 `;
