@@ -285,14 +285,26 @@ function checkBestSum({ results }) {
 
   // se ele tem um next
   if (bestSquare && bestSquare.movements && bestSquare.movements.next) {
-    return { selected: bestSquare.square, square: bestSquare.movements.next };
+    return {
+      selected: bestSquare.square,
+      square: bestSquare.movements.next,
+      sum: bestSquare.sum,
+    };
   }
   // se ele tiver duas opcoes retorna sempre o da esquerda
   if (Array.isArray(bestSquare.movements)) {
-    return { selected: bestSquare.square, square: bestSquare.movements[0] };
+    return {
+      selected: bestSquare.square,
+      square: bestSquare.movements[0],
+      sum: bestSquare.sum,
+    };
   }
 
-  return { selected: bestSquare.square, square: bestSquare.movements };
+  return {
+    selected: bestSquare.square,
+    square: bestSquare.movements,
+    sum: bestSquare.sum,
+  };
 }
 
 export function handleAlphaBeta({ board }) {

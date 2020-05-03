@@ -20,10 +20,12 @@ export default function Page() {
   const board = useSelector((state) => state.board.board);
   const [selected, setSelected] = useState(null);
   const [turn, setTurn] = useState('white');
+  const [keepEat, setKeepEat] = useState(false);
 
   function showMovements({ square }) {
     if (square.piece.color === pieceDarker) return;
     if (turn === 'black') return;
+
     dispatch(showMovementsAction({ board: showMovement({ board, square }) }));
     setSelected(square);
   }
@@ -33,19 +35,46 @@ export default function Page() {
     if (newBoard) {
       dispatch(movePiecesAction({ board: newBoard ? newBoard : board }));
       setSelected(null);
-      if (turn === 'white') {
+
+      // se o branco jogou mude para o turno do preto
+      if (selected.piece.color !== pieceDarker) {
         setTurn('black');
-      } else {
-        setTurn('white');
       }
+
+      return newBoard;
     }
   }
 
   function moveIA() {
-    const { selected, square } = handleAlphaBeta({ board });
+    const { selected, square, sum } = handleAlphaBeta({
+      board,
+    });
+
     square.color = squareSelected;
-    movePieces({ square, selected: selected });
+    const newBoard = movePieces({ square, selected: selected });
+
+    // se ele não for comer não porque testar novamente
+    if (sum >= 1) {
+      const { sum: sum1 } = handleAlphaBeta({
+        board: newBoard,
+      });
+      if (sum1 >= 1) {
+        setKeepEat(true);
+      } else {
+        setTurn('white');
+      }
+    } else {
+      setTurn('white');
+    }
   }
+
+  useEffect(() => {
+    if (!keepEat) return;
+
+    setTimeout(moveIA, 1000);
+    setKeepEat(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [board, keepEat]);
 
   useEffect(() => {
     if (turn === 'black') {
