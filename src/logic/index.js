@@ -442,7 +442,7 @@ export function checkEatingDark({ board, square, direction }) {
   return false;
 }
 
-function showMovementLight({ board, squareInfo }) {
+export function showMovementLight({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
   if (squareInfo.row === 0) {
@@ -868,4 +868,101 @@ export function movePiece({ board, square, selected }) {
   }
 
   return newBoard;
+}
+
+export function eatAgainLight({ board, squareInfo }) {
+  // se ele tiver na posicao 0 ele nao anda mais e vira rainha
+  // se for 9 só pode mover pra esquerda
+  if (squareInfo.row === 0) {
+    return false;
+  }
+
+  if (squareInfo.index === 9) {
+    const left = board[squareInfo.row - 1][squareInfo.index - 1];
+    if (left && left.piece && left.piece.color === pieceLighter) {
+      return false;
+    }
+    if (left && left.piece && left.piece.color !== pieceLighter) {
+      if (checkEatingLight({ board, square: left, direction: 'left' })) {
+        const newBoard = copyBoard({ board });
+        const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
+        nextLeft.color = squareSelected;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    left.color = squareSelected;
+    return false;
+  }
+  // se for 0 só pode mover pra direita
+  if (squareInfo.index === 0) {
+    const right = board[squareInfo.row - 1][squareInfo.index + 1];
+    if (right && right.piece && right.piece.color === pieceLighter) {
+      return false;
+    }
+    if (right && right.piece && right.piece.color !== pieceLighter) {
+      if (checkEatingLight({ board, square: right, direction: 'right' })) {
+        const newBoard = copyBoard({ board });
+        const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
+        nextRight.color = squareSelected;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    right.color = squareSelected;
+    return false;
+  }
+  // pode mover para os dois lados
+  const verify = { left: true, right: true };
+
+  // left
+  const left = board[squareInfo.row - 1][squareInfo.index - 1];
+  if (left && left.piece && left.piece.color === pieceLighter) {
+    verify.left = false;
+  }
+  if (left && left.piece && left.piece.color !== pieceLighter) {
+    if (checkEatingLight({ board, square: left, direction: 'left' })) {
+      const newBoard = copyBoard({ board });
+      const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
+      nextLeft.color = squareSelected;
+      return true;
+    } else {
+      verify.left = false;
+    }
+  }
+
+  // right
+  const right = board[squareInfo.row - 1][squareInfo.index + 1];
+  if (right && right.piece && right.piece.color === pieceLighter) {
+    verify.right = false;
+  }
+  if (right && right.piece && right.piece.color !== pieceLighter) {
+    if (checkEatingLight({ board, square: right, direction: 'right' })) {
+      const newBoard = copyBoard({ board });
+      const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
+      nextRight.color = squareSelected;
+      return true;
+    } else {
+      verify.right = false;
+    }
+  }
+
+  if (verify.right) {
+    right.color = squareSelected;
+  }
+  if (verify.left) {
+    left.color = squareSelected;
+  }
+
+  return false;
+}
+
+export function checkEatAgain({ board, square }) {
+  const squareInfo = getSquareInfo({ board, square });
+
+  return eatAgainLight({ board, squareInfo });
 }

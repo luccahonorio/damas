@@ -9,6 +9,7 @@ import {
   movePiece,
   squareSelected,
   pieceDarker,
+  checkEatAgain,
 } from '../../logic';
 import {
   showMovementsAction,
@@ -38,7 +39,9 @@ export default function Page() {
 
       // se o branco jogou mude para o turno do preto
       if (selected.piece.color !== pieceDarker) {
-        setTurn('black');
+        if (!checkEatAgain({ board, square })) {
+          setTurn('black');
+        }
       }
 
       return newBoard;
