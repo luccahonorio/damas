@@ -1,6 +1,6 @@
 import React from 'react';
 import Dashboard from './page/Dashboard';
-import Menu from './page/Menu';
+// import Menu from './page/Menu';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 

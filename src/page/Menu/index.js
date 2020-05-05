@@ -9,7 +9,6 @@ export default function Menu() {
     <Container>
       <img src={logo} alt="Icon" />
 
-      <button>PLAYER vs PLAYER</button>
       <button>PLAYER vs IA</button>
       <button>SELECIONAR TEMA</button>
     </Container>

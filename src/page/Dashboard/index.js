@@ -9,7 +9,6 @@ import {
   movePiece,
   squareSelected,
   pieceDarker,
-  checkEatAgain,
 } from '../../logic';
 import {
   showMovementsAction,
@@ -32,14 +31,19 @@ export default function Page() {
   }
 
   function movePieces({ square, selected }) {
-    const newBoard = movePiece({ board, square, selected });
-    if (newBoard) {
+    const data = movePiece({ board, square, selected });
+    if (data && data.newBoard) {
+      const { newBoard, eat } = data;
+
       dispatch(movePiecesAction({ board: newBoard ? newBoard : board }));
       setSelected(null);
 
       // se o branco jogou mude para o turno do preto
-      if (selected.piece.color !== pieceDarker) {
-        if (!checkEatAgain({ board, square })) {
+
+      if (eat) {
+        setTurn('white');
+      } else {
+        if (selected.piece.color !== pieceDarker) {
           setTurn('black');
         }
       }
