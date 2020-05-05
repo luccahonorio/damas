@@ -1,13 +1,20 @@
 import { darken } from 'polished';
 
+// cor do quadrado claro
 const squareColorLighter = 'rgb(212,198,159)';
+
+// cor do quadrado escuro
 export const squareColorDarker = 'rgb(142,108,80)';
 
+// cor da peca escura
 export const pieceDarker = 'rgb(82,57,47)';
+// cor da peca clara
 const pieceLighter = 'rgb(230,183,79)';
 
+// cor do quadrado selecionada
 export const squareSelected = darken(0.2, squareColorDarker);
 
+// funcao responsavel por criar uma peca
 function piece({ color, queen = false, enable = true }) {
   return {
     color: color === pieceDarker ? pieceDarker : pieceLighter,
@@ -16,6 +23,7 @@ function piece({ color, queen = false, enable = true }) {
   };
 }
 
+// funcao respinsavel por criar um quadrado
 function square({ id, piece, color }) {
   return {
     id,
@@ -24,6 +32,7 @@ function square({ id, piece, color }) {
   };
 }
 
+// funcao responsavel por criar um board
 export const board = [
   [
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -347,6 +356,7 @@ export const board = [
   ],
 ];
 
+// funcao responsavel por dar informacoes (row, index, id) de um quadrado
 function getSquareInfo({ board, square }) {
   let indexSquare = null;
 
@@ -366,6 +376,7 @@ function getSquareInfo({ board, square }) {
   return indexSquare;
 }
 
+// funcao que copia o tabuleiro atual e coloca as cores dos quadrados originais
 function copyBoard({ board }) {
   const newBoard = JSON.parse(JSON.stringify(board)).map((row) => {
     return row.map((sq) => {
@@ -396,6 +407,7 @@ export function showMovement({ board, square }) {
   return showMovementDark({ squareInfo, board: newBoard });
 }
 
+// funcao responsavel por analisar se a peca clara pode comer
 export function checkEatingLight({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
@@ -419,6 +431,7 @@ export function checkEatingLight({ board, square, direction }) {
   return false;
 }
 
+// funcao responsavel por analisar se a peca escura pode comer
 export function checkEatingDark({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 1 === -1 || squareInfo.row + 1 === 10) {
@@ -442,6 +455,7 @@ export function checkEatingDark({ board, square, direction }) {
   return false;
 }
 
+// funcao responsavel por mostrar os movimentos da peca clara
 export function showMovementLight({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -533,6 +547,7 @@ export function showMovementLight({ board, squareInfo }) {
   return board;
 }
 
+// funcao responsavel por mostrar os movimentos da peca clara que e rainha
 function showMovementLightQueen({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -624,6 +639,7 @@ function showMovementLightQueen({ board, squareInfo }) {
   return board;
 }
 
+// funcao responsavel por mostrar os movimentos da peca escura
 function showMovementDark({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -716,6 +732,7 @@ function showMovementDark({ board, squareInfo }) {
   return board;
 }
 
+// funcao responsavel por mostrar os movimentos da peca escura rainha
 function showMovementDarkQueen({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -807,6 +824,7 @@ function showMovementDarkQueen({ board, squareInfo }) {
   return board;
 }
 
+// funao main para mostrar os movimentos da rainha
 function showMovementQueen({ board, squareInfo }) {
   if (squareInfo.piece.color === pieceLighter) {
     const boardDark = showMovementDarkQueen({ board, squareInfo });
@@ -822,6 +840,7 @@ function showMovementQueen({ board, squareInfo }) {
   return showMovementDark({ board: boardLight, squareInfo });
 }
 
+// funcao responsavel por analisar se a peca clara pode comer em sequencia
 function checkTestLightEat({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 2 <= -1 || squareInfo.row + 2 >= 10) {
@@ -849,6 +868,8 @@ function checkTestLightEat({ board, square, direction }) {
   return false;
 }
 
+// funcao responsavel por analisar se peca clara quando é rainha pode comer
+// em sequencia
 function checkTestDarkEat({ board, square, direction }) {
   const squareInfo = getSquareInfo({ board, square });
   if (squareInfo.row - 2 <= -1 || squareInfo.row + 2 >= 10) {
@@ -877,6 +898,7 @@ function checkTestDarkEat({ board, square, direction }) {
   return false;
 }
 
+// funcao que move as pecas
 export function movePiece({ board, square, selected }) {
   if (square.color !== squareSelected) return;
   const selectedInfo = getSquareInfo({ board, square: selected });

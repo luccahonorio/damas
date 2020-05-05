@@ -17,6 +17,7 @@ const movePiece = 0;
 
 // array [{id: 1, soma: 0}, {id: 2, soma: 1.5}]
 
+// Pega as informações (row, index, piece, id) de um square (quadrado)
 function getSquareInfo({ board, square }) {
   let indexSquare = null;
 
@@ -36,6 +37,7 @@ function getSquareInfo({ board, square }) {
   return indexSquare;
 }
 
+// copia o board (tabuleiro) para um novo com as cores dos squares (quadrados) originais
 function copyBoard({ board }) {
   const newBoard = JSON.parse(JSON.stringify(board)).map((row) => {
     return row.map((sq) => {
@@ -49,6 +51,7 @@ function copyBoard({ board }) {
 }
 
 // false, object, array
+// mostra os movimentos da peça clara quando ela é rainha
 function showMovementLightQueen({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -135,7 +138,7 @@ function showMovementLightQueen({ board, squareInfo }) {
   return result;
 }
 
-// ele pode retornar ou false ou o objeto
+// mostra os movimentos da peça escura
 function showMovementDark({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -226,6 +229,7 @@ function showMovementDark({ board, squareInfo }) {
   return result;
 }
 
+// funcao responsável por calcular a soma das possiblidades
 function countMovementValue({ board, movements, square }) {
   let sum = movePiece;
   // voce pode comer? FEITO
@@ -263,6 +267,9 @@ function countMovementValue({ board, movements, square }) {
   return { movements, square, sum };
 }
 
+// funcao responsável por pegar a melhor opcão de movimento, pode pegar um:
+// objeto -> quando ele pode comer, array -> quando existe as opcoes de esquerda e direita,
+// false -> quando não pode mover
 function checkBestOption({ board, square }) {
   const squareInfo = getSquareInfo({ board, square });
   if (square && square.piece && square.piece.queen) {
@@ -287,6 +294,8 @@ function checkBestOption({ board, square }) {
 }
 
 // {movements: {}|[2], square, sum}
+// funcao responsavel por identificar o movimento que tem a melhor soma
+// funcao também pode a arvore
 function checkBestSum({ results }) {
   let sum = -10;
   let bestSquare = null;
@@ -326,6 +335,8 @@ function checkBestSum({ results }) {
   };
 }
 
+// funcao main na qual chama as demais para identificar a melhor opcao de movimentacao
+// e a que cria arvore
 export function handleAlphaBeta({ board }) {
   const results = [];
   board.forEach((row) =>
