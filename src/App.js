@@ -1,10 +1,12 @@
 import React from 'react';
-import Dashboard from './page/Dashboard';
+import Routes from './routes';
+import { Router } from 'react-router-dom';
 // import Menu from './page/Menu';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
 import './config/ReactotronConfig';
+import history from './services/history';
 
 import { store, persistor } from './store';
 
@@ -14,8 +16,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <GlobalStyle />
-        <Dashboard />
+        <Router history={history}>
+          <GlobalStyle />
+          <Routes />
+        </Router>
       </PersistGate>
     </Provider>
   );
