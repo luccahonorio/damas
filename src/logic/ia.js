@@ -269,7 +269,9 @@ function checkBestOption({ board, square }) {
     // object -> pode comer, false -> não pode comer nada, array -> pode andar na esquerda e na direita
     let movements = showMovementLightQueen({ board, squareInfo });
     if (!Array.isArray(movements)) {
-      if (!movements) return;
+      return countMovementValue({ board, movements, square });
+    }
+    if (movements) {
       return countMovementValue({ board, movements, square });
     }
     const movementsDark = showMovementDark({ board, squareInfo });
@@ -288,6 +290,11 @@ function checkBestOption({ board, square }) {
 function checkBestSum({ results }) {
   let sum = -10;
   let bestSquare = null;
+
+  if (results.length === 0) {
+    alert('O jogo acabou.');
+  }
+
   results.forEach((result) => {
     if (result.sum > sum) {
       bestSquare = result;
