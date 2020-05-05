@@ -48,6 +48,7 @@ function copyBoard({ board }) {
   return newBoard;
 }
 
+// false, object, array
 function showMovementLightQueen({ board, squareInfo }) {
   // se ele tiver na posicao 0 ele nao anda mais e vira rainha
   // se for 9 só pode mover pra esquerda
@@ -64,7 +65,7 @@ function showMovementLightQueen({ board, squareInfo }) {
       if (checkEatingLight({ board, square: left, direction: 'left' })) {
         const newBoard = copyBoard({ board });
         const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
-        return { next: nextLeft };
+        return { next: nextLeft, direction: 'left' };
       } else {
         return false;
       }
@@ -82,7 +83,7 @@ function showMovementLightQueen({ board, squareInfo }) {
       if (checkEatingLight({ board, square: right, direction: 'right' })) {
         const newBoard = copyBoard({ board });
         const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
-        return { next: nextRight };
+        return { next: nextRight, direction: 'right' };
       } else {
         return false;
       }
@@ -102,7 +103,7 @@ function showMovementLightQueen({ board, squareInfo }) {
     if (checkEatingLight({ board, square: left, direction: 'left' })) {
       const newBoard = copyBoard({ board });
       const nextLeft = newBoard[squareInfo.row - 2][squareInfo.index - 2];
-      return { next: nextLeft };
+      return { next: nextLeft, direction: 'left' };
     } else {
       verify.left = false;
     }
@@ -117,7 +118,7 @@ function showMovementLightQueen({ board, squareInfo }) {
     if (checkEatingLight({ board, square: right, direction: 'right' })) {
       const newBoard = copyBoard({ board });
       const nextRight = newBoard[squareInfo.row - 2][squareInfo.index + 2];
-      return { next: nextRight };
+      return { next: nextRight, direction: 'right' };
     } else {
       verify.right = false;
     }
@@ -247,7 +248,11 @@ function countMovementValue({ board, movements, square }) {
     } else {
       index = pieceInfo.index - 1;
     }
-    if (board[row][index].piece.queen) {
+    if (
+      board[row][index] &&
+      board[row][index].piece &&
+      board[row][index].piece.queen
+    ) {
       // é rainha
       sum += eatQueenPiece;
     } else {
@@ -260,12 +265,18 @@ function countMovementValue({ board, movements, square }) {
 
 function checkBestOption({ board, square }) {
   const squareInfo = getSquareInfo({ board, square });
-  if (square.queen) {
-    const boardLight = showMovementLightQueen({ board, squareInfo });
-    if (!Array.isArray(boardLight)) {
-      return boardLight.newBoard;
+  if (square && square.piece && square.piece.queen) {
+    // object -> pode comer, false -> não pode comer nada, array -> pode andar na esquerda e na direita
+    let movements = showMovementLightQueen({ board, squareInfo });
+    if (!Array.isArray(movements)) {
+      if (!movements) return;
+      return countMovementValue({ board, movements, square });
     }
-    return showMovementDark({ board: boardLight, squareInfo });
+    const movementsDark = showMovementDark({ board, squareInfo });
+    if (!movementsDark) {
+      return countMovementValue({ board, movements, square });
+    }
+    return countMovementValue({ board, movements: movementsDark, square });
   } else {
     const movements = showMovementDark({ board, squareInfo });
     if (!movements) return;
@@ -273,6 +284,7 @@ function checkBestOption({ board, square }) {
   }
 }
 
+// {movements: {}|[2], square, sum}
 function checkBestSum({ results }) {
   let sum = -10;
   let bestSquare = null;

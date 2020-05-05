@@ -29,62 +29,62 @@ export const board = [
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 1,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 2,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 3,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 4,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 5,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
   ],
   [
     square({
       id: 6,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 7,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 8,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 9,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 10,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -93,62 +93,62 @@ export const board = [
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 11,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 12,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 13,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 14,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 15,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
   ],
   [
     square({
       id: 16,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 17,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 18,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 19,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 20,
-      piece: piece({ color: pieceDarker }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -227,56 +227,56 @@ export const board = [
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 32,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 33,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 34,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 35,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
   ],
   [
     square({
       id: 36,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 37,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 38,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 39,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 40,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -285,19 +285,19 @@ export const board = [
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 41,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 42,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 43,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -309,38 +309,38 @@ export const board = [
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 45,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
   ],
   [
     square({
       id: 46,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 47,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 48,
-      piece: piece({ color: pieceLighter }),
+      piece: null,
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 49,
-      piece: piece({ color: pieceLighter }),
+      piece: piece({ color: pieceDarker, queen: true }),
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
     square({
       id: 50,
-      piece: piece({ color: pieceLighter }),
+      piece: piece({ color: pieceDarker, queen: true }),
       color: squareColorDarker,
     }),
     square({ id: null, piece: null, color: squareColorLighter }),
@@ -832,14 +832,18 @@ function checkTestLightEat({ board, square, direction }) {
       return false;
     }
     if (!board[squareInfo.row - 2][squareInfo.index - 2].piece) {
-      return true;
+      if (board[squareInfo.row - 1][squareInfo.index - 1].piece) {
+        return true;
+      }
     }
   } else {
     if (squareInfo.index === 9 || squareInfo.index === 8) {
       return false;
     }
     if (!board[squareInfo.row - 2][squareInfo.index + 2].piece) {
-      return true;
+      if (board[squareInfo.row - 1][squareInfo.index + 1].piece) {
+        return true;
+      }
     }
   }
   return false;
@@ -854,15 +858,20 @@ function checkTestDarkEat({ board, square, direction }) {
     if (squareInfo.index === 9) {
       return false;
     }
+
     if (!board[squareInfo.row + 2][squareInfo.index + 2].piece) {
-      return true;
+      if (board[squareInfo.row + 1][squareInfo.index + 1].piece) {
+        return true;
+      }
     }
   } else {
     if (squareInfo.index === 0) {
       return false;
     }
     if (!board[squareInfo.row + 2][squareInfo.index - 2].piece) {
-      return true;
+      if (board[squareInfo.row + 1][squareInfo.index - 1].piece) {
+        return true;
+      }
     }
   }
   return false;
@@ -909,7 +918,12 @@ export function movePiece({ board, square, selected }) {
       eat = true;
     }
     // se a peça for queen tente para o dark tbm
-    if (selected && selected.piece && selected.piece.queen) {
+    if (
+      selected &&
+      selected.piece &&
+      selected.piece.queen &&
+      selected.piece.color === pieceLighter
+    ) {
       if (
         checkTestDarkEat({ board: newBoard, square, direction: 'right' }) ||
         checkTestDarkEat({ board: newBoard, square, direction: 'left' })

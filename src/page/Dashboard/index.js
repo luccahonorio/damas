@@ -23,55 +23,70 @@ export default function Page() {
   const [keepEat, setKeepEat] = useState(false);
 
   function showMovements({ square }) {
-    if (square.piece.color === pieceDarker) return;
-    if (turn === 'black') return;
+    try {
+      if (square.piece.color === pieceDarker) return;
+      if (turn === 'black') return;
 
-    dispatch(showMovementsAction({ board: showMovement({ board, square }) }));
-    setSelected(square);
+      dispatch(showMovementsAction({ board: showMovement({ board, square }) }));
+      setSelected(square);
+    } catch (err) {
+      console.log('erro no showMovements');
+    }
   }
 
   function movePieces({ square, selected }) {
-    const data = movePiece({ board, square, selected });
-    if (data && data.newBoard) {
-      const { newBoard, eat } = data;
+    try {
+      const data = movePiece({ board, square, selected });
+      if (data && data.newBoard) {
+        const { newBoard, eat } = data;
+        dispatch(movePiecesAction({ board: newBoard ? newBoard : board }));
+        setSelected(null);
 
-      dispatch(movePiecesAction({ board: newBoard ? newBoard : board }));
-      setSelected(null);
+        // se o branco jogou mude para o turno do preto
 
-      // se o branco jogou mude para o turno do preto
-
-      if (eat) {
-        setTurn('white');
-      } else {
-        if (selected.piece.color !== pieceDarker) {
-          setTurn('black');
+        if (eat) {
+          setTurn('white');
+        } else {
+          if (
+            selected &&
+            selected.piece &&
+            selected.piece.color &&
+            selected.piece.color !== pieceDarker
+          ) {
+            setTurn('black');
+          }
         }
-      }
 
-      return newBoard;
+        return newBoard;
+      }
+    } catch (err) {
+      console.log('erro no MovePieces', err);
     }
   }
 
   function moveIA() {
-    const { selected, square, sum } = handleAlphaBeta({
-      board,
-    });
-
-    square.color = squareSelected;
-    const newBoard = movePieces({ square, selected: selected });
-
-    // se ele não for comer não porque testar novamente
-    if (sum >= 1) {
-      const { sum: sum1 } = handleAlphaBeta({
-        board: newBoard,
+    try {
+      const { selected, square, sum } = handleAlphaBeta({
+        board,
       });
-      if (sum1 >= 1) {
-        setKeepEat(true);
+
+      square.color = squareSelected;
+      const newBoard = movePieces({ square, selected });
+      // se ele não for comer não porque testar novamente
+      if (sum >= 1) {
+        const { sum: sum1 } = handleAlphaBeta({
+          board: newBoard,
+        });
+        if (sum1 >= 1) {
+          setKeepEat(true);
+        } else {
+          setTurn('white');
+        }
       } else {
         setTurn('white');
       }
-    } else {
-      setTurn('white');
+    } catch (err) {
+      console.log('Erro no moveIA', err);
     }
   }
 
